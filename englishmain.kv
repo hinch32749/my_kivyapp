@@ -1,0 +1,459 @@
+#:kivy 2.1.0
+
+
+
+
+<WordCheck>:
+
+    box:box_word_check
+    box_end:box_end_count
+    box_menu:box_start_menu
+    box_words:box_words
+    box_ticket:ticket_word
+    grid_words:grid_words
+    grid_ticket:grid_ticket
+    label_end_count:label_end_count
+    button_next:grid_button_next
+    buttons:grid_buttons
+    input_search:input_search
+    input_infinitive:input_infinitive
+    input_past_simple:input_past_simple
+    input_participle:input_participle
+    rus_word:rus_word
+    rus_word_ticket:rus_word_ticket
+    label_counter:label_counter
+    label_checked:label_checked
+    ticket_infinitive:ticket_infinitive
+    ticket_infinitive_trans:ticket_infinitive_trans
+    ticket_past_simple:ticket_past_simple
+    ticket_past_simple_trans:ticket_past_simple_trans
+    ticket_participle:ticket_participle
+    ticket_participle_trans:ticket_participle_trans
+
+    canvas:
+        Color:
+            rgb: .25, .25, .25, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    BoxLayout:
+        id: box_start_menu
+        pos: root.pos
+        size: root.size
+
+        GridLayout:
+            id: grid_start_menu
+            center_x: root.width / 2
+            center_y: root.height / 2
+            cols: 1
+            spacing: '25dp'
+            padding: root.width / 6, root.height / 4
+
+            Button:
+                id: to_word_check
+                text: 'Проверить знания'
+                background_color: (0, 0, 0, 0)
+                background_normal: ''
+                bold: True
+                canvas.before:
+                    Color:
+                        rgba: (44/255, 200/255, 245/255, .8)
+                    RoundedRectangle:
+                        size: self.size
+                        pos: self.pos
+                        radius: [15]
+                on_release: root.to_word_check()
+
+            Button:
+                id: to_words
+                text: 'Неправильные глаголы'
+                background_color: (0, 0, 0, 0)
+                background_normal: ''
+                bold: True
+                canvas.before:
+                    Color:
+                        rgba: (245/255, 151/255, 40/255, .8)
+                    RoundedRectangle:
+                        size: self.size
+                        pos: self.pos
+                        radius: [15]
+                on_release: root.to_words()
+
+            Button:
+                id: exit
+                text: 'Выйти'
+                background_color: (0, 0, 0, 0)
+                background_normal: ''
+                bold: True
+                canvas.before:
+                    Color:
+                        rgba: (220/255, 55/255, 44/255, .8)
+                    RoundedRectangle:
+                        size: self.size
+                        pos: self.pos
+                        radius: [15]
+                on_release: app.stop()
+
+    BoxLayout:
+        id: box_words
+        orientation: 'vertical'
+        size: root.size
+        spacing: '25dp'
+        padding: '25dp'
+
+        GridLayout:
+            id: grid_search
+            size_hint: 1, .1
+            cols: 2
+            spacing: 5
+
+            TextInput:
+                id: input_search
+                size_hint: .8, 1
+
+
+            Button:
+                id: button_search
+                text: "Поиск"
+                bold: True
+                size_hint: .2, 1
+
+        ScrollView:
+            do_scroll_x: False
+            do_scroll_y: True
+            padding: '25dp'
+            size_hint: 1, .8
+
+            GridLayout:
+                id: grid_words
+                size_hint_y: None
+                cols: 1
+                height: self.minimum_height
+                spacing: '10dp'
+
+        Button:
+            id: words_to_menu
+            text: 'Назад в Меню'
+            background_color: (0, 0, 0, 0)
+            background_normal: ''
+            bold: True
+            pos_hint: {"center_x": .5}
+            size_hint: .8, .1
+            canvas.before:
+                Color:
+                    rgba: (220/255, 55/255, 44/255, .8)
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [20]
+            on_release: root.to_menu()
+
+    BoxLayout:
+        id: ticket_word
+        orientation: 'vertical'
+        size: root.size
+        spacing: '25dp'
+        padding: '25dp'
+
+        canvas:
+            Color:
+                rgb: .25, .25, .25, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        Label:
+            id: rus_word_ticket
+            pos: root.pos
+            size: root.size
+            size_hint: 1, .1
+            text: ''
+            font_size: '25dp'
+            color: [1, 1, 1, 1]
+
+        GridLayout:
+            id: grid_ticket
+            cols: 1
+            size_hint: 1, .8
+            spacing:'5dp'
+
+            Label:
+                text: "Infinitive"
+
+            GridLayout:
+                id: grid_ticket_infinitive
+                cols: 2
+                canvas:
+                    Color:
+                        rgba: (254/255, 244/255, 233/255, .8)
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+                Label:
+                    id: ticket_infinitive
+                    color: "black"
+                Label:
+                    id: ticket_infinitive_trans
+                    color: "black"
+            Label:
+                text: "Past Simple"
+
+            GridLayout:
+                id: grid_ticket_past_simple
+                cols: 2
+                canvas:
+                    Color:
+                        rgba: (254/255, 244/255, 233/255, .8)
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+
+                Label:
+                    id: ticket_past_simple
+                    color: "black"
+                Label:
+                    id: ticket_past_simple_trans
+                    color: "black"
+            Label:
+                text: "Participle"
+
+
+            GridLayout:
+                id: grid_ticket_participle
+                cols: 2
+                canvas:
+                    Color:
+                        rgba: (254/255, 244/255, 233/255, .8)
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+
+                Label:
+                    id: ticket_participle
+                    color: "black"
+                Label:
+                    id: ticket_participle_trans
+                    color: "black"
+
+        Button:
+            id: ticket_to_menu
+            name: 'ticket_to_menu'
+            text: 'Назад'
+            background_color: (0, 0, 0, 0)
+            background_normal: ''
+            bold: True
+            pos_hint: {"center_x": .5}
+            size_hint: .8, .1
+            canvas.before:
+                Color:
+                    rgba: (220/255, 55/255, 44/255, .8)
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [20]
+            on_release: root.to_words()
+
+    BoxLayout:
+        id: box_word_check
+        orientation: 'vertical'
+        padding: '25dp'
+        pos: root.pos
+        size: root.size
+
+        Label:
+            id: rus_word
+            pos: root.pos
+            size: root.size
+            size_hint: 1, .1
+            text: ''
+            font_size: '25dp'
+            color: [1, 1, 1, 1]
+
+        GridLayout:
+#            canvas:
+#                Color:
+#                    rgb: .27, .21, .05, 1
+#                Rectangle:
+#                    pos: self.pos
+#                    size: self.size
+
+            id: grid_main
+            cols: 1
+            spacing: '2dp'
+            size_hint: 1, .5
+            padding: '15dp', '10dp', '15dp', '10dp'
+
+
+
+            Label:
+                id: label_infinitive
+                text: 'Infinitive'
+
+            TextInput:
+                id: input_infinitive
+                halign: "center"
+                padding_y: '5dp'
+                multiline: False
+                hint_text_color: 'black'
+
+            Label:
+                id: label_past_simple
+                text: 'Past Simple'
+
+            TextInput:
+                id: input_past_simple
+                halign: 'center'
+                padding_y: '5dp'
+                multiline: False
+                hint_text_color: 'black'
+
+            Label:
+                id: label_participle
+                text: 'Participle II'
+
+            TextInput:
+                id: input_participle
+                halign: 'center'
+                padding_y: '5dp'
+                multiline: False
+                hint_text_color: 'black'
+
+        GridLayout:
+            cols: 2
+            size_hint: 1, .1
+
+            Label:
+                id: label_counter
+                text: f''
+                size_hint: .6, 1
+            Label:
+                id: label_checked
+                size_hint: .4, 1
+
+        GridLayout:
+            id: grid_buttons
+            cols: 1
+            spacing: '10dp'
+            size_hint: 1, .3
+            padding: '15dp', '0dp', '15dp', '0dp'
+
+            Button:
+                id: button_valid
+                text: 'Проверить'
+                background_color: (0, 0, 0, 0)
+                background_normal: ''
+                background_down: ".images/eng2.png"
+                bold: True
+                size_hint: 1, .1
+                canvas.before:
+                    Color:
+                        rgba: (44/255, 200/255, 245/255, .8)
+                    RoundedRectangle:
+                        size: self.size
+                        pos: self.pos
+                        radius: [20]
+                on_release: root.valid_words()
+
+            Button:
+                id: button_answer
+                text: 'Показать ответ'
+                background_color: (0, 0, 0, 0)
+                background_normal: ''
+                bold: True
+                size_hint: 1, .1
+                canvas.before:
+                    Color:
+                        rgba: (245/255, 151/255, 40/255, .8)
+                    RoundedRectangle:
+                        size: self.size
+                        pos: self.pos
+                        radius: [20]
+                on_release: root.check_answer()
+
+            Button:
+                id: button_start
+                text: 'Назад в Меню'
+                background_color: (0, 0, 0, 0)
+                background_normal: ''
+                bold: True
+                size_hint: 1, .1
+                canvas.before:
+                    Color:
+                        rgba: (220/255, 55/255, 44/255, .8)
+                    RoundedRectangle:
+                        size: self.size
+                        pos: self.pos
+                        radius: [20]
+                on_release: root.to_menu()
+
+        GridLayout:
+            id: grid_button_next
+            cols: 1
+            spacing: '20dp'
+            size_hint: 1, .3
+            padding: '15dp', '20dp', '15dp', '20dp'
+
+            Button:
+                id: button_next
+                text: 'Далее'
+                background_color: (0, 0, 0, 0)
+                background_normal: ''
+                bold: True
+                size_hint: 1, .15
+                canvas.before:
+                    Color:
+                        rgba: (44/255, 200/255, 245/255, .8)
+                    RoundedRectangle:
+                        size: self.size
+                        pos: self.pos
+                        radius: [20]
+                on_release: root.build()
+
+            Button:
+                id: button_start
+                text: 'Назад в Меню'
+                background_color: (0, 0, 0, 0)
+                background_normal: ''
+                bold: True
+                size_hint: 1, .15
+                canvas.before:
+                    Color:
+                        rgba: (220/255, 55/255, 44/255, .8)
+                    RoundedRectangle:
+                        size: self.size
+                        pos: self.pos
+                        radius: [20]
+                on_release: root.to_menu()
+
+    BoxLayout:
+        id: box_end_count
+        pos: root.pos
+        size: root.size
+
+        GridLayout:
+            id: grid_end_count
+            cols: 1
+            spacing: '80dp'
+            padding: root.width / 6, root.height / 3
+            Label:
+                id: label_end_count
+                name: 'label_end_count'
+                text: f''
+
+            Button:
+                id: button_start
+                text: 'Назад в Меню'
+                background_color: (0, 0, 0, 0)
+                background_normal: ''
+                bold: True
+                canvas.before:
+                    Color:
+                        rgba: (220/255, 55/255, 44/255, .8)
+                    RoundedRectangle:
+                        size: self.size
+                        pos: self.pos
+                        radius: [20]
+                on_release: root.to_menu()
+
+
